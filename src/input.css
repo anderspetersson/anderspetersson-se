@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+a, a:visited, a:focus {
+    color: #007bff;
+    text-decoration: none;
+}
