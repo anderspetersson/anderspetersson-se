@@ -1,0 +1,29 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1
+metadata:
+  name: anderspetersson-www
+spec:
+  parentRefs:
+    - kind: Gateway
+      name: traefik-gateway
+  hostnames:
+    - "www.anderspetersson.se"
+  rules:
+    - backendRefs:
+        - name: anderspetersson-se
+          port: 8300
+---
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1
+metadata:
+  name: bestofblocket-non-www
+spec:
+  parentRefs:
+    - kind: Gateway
+      name: traefik-gateway
+  hostnames:
+    - "anderspetersson.se"
+  rules:
+    - backendRefs:
+        - name: anderspetersson-se
+          port: 8300
