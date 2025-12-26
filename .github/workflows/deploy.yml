@@ -13,6 +13,8 @@ env:
   IMAGE: nginx
   KUBERNETES_CONTAINER_NAME: nginx
   GKE_SA_KEY: ${{ secrets.GKE_SA_KEY }}
+  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+
 
 jobs:
   setup-build-publish-deploy:
@@ -45,23 +47,15 @@ jobs:
           docker build \
             --tag "europe-west1-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY_REPO/$IMAGE:$GITHUB_SHA" \
             --tag "europe-west1-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY_REPO/$IMAGE:latest" \
-            --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" \
             .
 
-      # Push the Docker image to Google Container Registry
+      # Push the Docker image to Google Artifact Registry
       - name: Publish
         run: |-
           docker push "europe-west1-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY_REPO/$IMAGE:$GITHUB_SHA"
           docker push "europe-west1-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY_REPO/$IMAGE:latest"
 
+      # Modify Kubernetes deployment to use the new image.
       - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-          PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-          DEPLOYMENT_NAME: anderspetersson-se
-          ARTIFACT_REGISTRY_REPO: anderspetersson-se
-          IMAGE: nginx
-          KUBERNETES_CONTAINER_NAME: nginx
         with:
           args: set image deployment ${{ env.DEPLOYMENT_NAME }} ${{ env.KUBERNETES_CONTAINER_NAME }}=europe-west1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REGISTRY_REPO }}/${{ env.IMAGE }}:${{ github.sha }}
