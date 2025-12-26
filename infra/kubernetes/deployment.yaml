@@ -20,7 +20,7 @@ spec:
         - name: gcp-artifact-registry
       containers:
         - name: nginx
-          image: europe-west1-docker.pkg.dev/roiiogcloud/anderspetersson-se/anderspetersson-se:latest
+          image: europe-west1-docker.pkg.dev/roiiogcloud/anderspetersson-se/nginx:latest
           imagePullPolicy: Always
           ports:
             - name: nginx
