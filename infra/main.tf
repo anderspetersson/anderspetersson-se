@@ -34,7 +34,6 @@ variable "domain" {
   default     = "anderspetersson.se"
 }
 
-
 resource "cloudflare_dns_record" "terraform_managed_resource_fb89b04a281045e77dacc5cac94a48b8_0" {
   content = "ghs.google.com"
   name    = "mail.anderspetersson.se"
