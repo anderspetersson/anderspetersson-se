@@ -170,26 +170,8 @@
   }
 }
 @layer utilities {
-  .container {
-    width: 100%;
-    @media (width >= 40rem) {
-      max-width: 40rem;
-    }
-    @media (width >= 48rem) {
-      max-width: 48rem;
-    }
-    @media (width >= 64rem) {
-      max-width: 64rem;
-    }
-    @media (width >= 80rem) {
-      max-width: 80rem;
-    }
-    @media (width >= 96rem) {
-      max-width: 96rem;
-    }
-  }
-  .m-auto {
-    margin: auto;
+  .m-10 {
+    margin: calc(var(--spacing) * 10);
   }
   .my-10 {
     margin-block: calc(var(--spacing) * 10);
@@ -203,20 +185,8 @@
   .grid {
     display: grid;
   }
-  .w-100 {
-    width: calc(var(--spacing) * 100);
-  }
-  .w-140 {
-    width: calc(var(--spacing) * 140);
-  }
-  .w-180 {
-    width: calc(var(--spacing) * 180);
-  }
-  .w-200 {
-    width: calc(var(--spacing) * 200);
-  }
-  .w-400 {
-    width: calc(var(--spacing) * 400);
+  .max-w-200 {
+    max-width: calc(var(--spacing) * 200);
   }
   .list-disc {
     list-style-type: disc;
@@ -234,10 +204,6 @@
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
-  .text-lg {
-    font-size: var(--text-lg);
-    line-height: var(--tw-leading, var(--text-lg--line-height));
-  }
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
@@ -249,10 +215,6 @@
   .font-extralight {
     --tw-font-weight: var(--font-weight-extralight);
     font-weight: var(--font-weight-extralight);
-  }
-  .font-light {
-    --tw-font-weight: var(--font-weight-light);
-    font-weight: var(--font-weight-light);
   }
 }
 a, a:visited, a:focus {
