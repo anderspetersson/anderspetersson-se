@@ -41,7 +41,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_fb89b04a281045e77da
   tags    = []
   ttl     = 1
   type    = "CNAME"
-  zone_id = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id = var.zone_id
   settings = {
     flatten_cname = false
   }
@@ -55,7 +55,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_800ee194b5d849bdaf9
   tags     = []
   ttl      = 1
   type     = "MX"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
@@ -67,7 +67,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_b73ebc8b5dee87f55f2
   tags     = []
   ttl      = 1
   type     = "MX"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
@@ -79,7 +79,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_e6ec0ec95de7a81fd4a
   tags     = []
   ttl      = 1
   type     = "MX"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
@@ -91,7 +91,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_d2c40f23db601351f5a
   tags     = []
   ttl      = 1
   type     = "MX"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
@@ -103,7 +103,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_3b384e1b5f6e11ecf89
   tags     = []
   ttl      = 1
   type     = "MX"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
@@ -126,7 +126,7 @@ resource "cloudflare_dns_record" "no_www" {
   tags     = []
   ttl      = 1
   type     = "CNAME"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
@@ -137,6 +137,6 @@ resource "cloudflare_dns_record" "www" {
   tags     = []
   ttl      = 1
   type     = "CNAME"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
