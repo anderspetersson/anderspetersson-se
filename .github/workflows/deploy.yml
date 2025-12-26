@@ -46,7 +46,7 @@ jobs:
             --tag "europe-west1-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY_REPO/$IMAGE:$GITHUB_SHA" \
             --tag "europe-west1-docker.pkg.dev/$PROJECT_ID/$ARTIFACT_REGISTRY_REPO/$IMAGE:latest" \
             --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" \
+            --build-arg GITHUB_REF="$GITHUB_REF"
 
       # Push the Docker image to Google Container Registry
       - name: Publish
