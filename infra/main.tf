@@ -2,7 +2,7 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5"
+      version = "5.15"
     }
   }
 }
@@ -16,7 +16,13 @@ variable "zone_id" {
   sensitive   = true
 }
 
-variable "account_id" {
+variable "cloudflare_account_id" {
+  description = "Cloudflare Account ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_tunnel_id" {
   description = "Cloudflare Account ID"
   type        = string
   sensitive   = true
@@ -27,6 +33,7 @@ variable "domain" {
   type        = string
   default     = "anderspetersson.se"
 }
+
 
 resource "cloudflare_dns_record" "terraform_managed_resource_fb89b04a281045e77dacc5cac94a48b8_0" {
   content = "ghs.google.com"
@@ -101,50 +108,6 @@ resource "cloudflare_dns_record" "terraform_managed_resource_3b384e1b5f6e11ecf89
   settings = {}
 }
 
-resource "cloudflare_dns_record" "terraform_managed_resource_dd5110791af0b7a184812aab7101ff24_6" {
-  content  = "ns-cloud-a2.googledomains.com"
-  name     = "anderspetersson.se"
-  proxied  = false
-  tags     = []
-  ttl      = 1
-  type     = "NS"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
-  settings = {}
-}
-
-resource "cloudflare_dns_record" "terraform_managed_resource_f3fc90197bf1e57a9bcb3449cd19b15f_7" {
-  content  = "ns-cloud-a3.googledomains.com"
-  name     = "anderspetersson.se"
-  proxied  = false
-  tags     = []
-  ttl      = 1
-  type     = "NS"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
-  settings = {}
-}
-
-resource "cloudflare_dns_record" "terraform_managed_resource_01e10a008bc5ca59efe0636da137f547_8" {
-  content  = "ns-cloud-a4.googledomains.com"
-  name     = "anderspetersson.se"
-  proxied  = false
-  tags     = []
-  ttl      = 1
-  type     = "NS"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
-  settings = {}
-}
-
-resource "cloudflare_dns_record" "terraform_managed_resource_d33df048bff5bf3c5e908468f509296c_9" {
-  content  = "ns-cloud-a1.googledomains.com"
-  name     = "anderspetersson.se"
-  proxied  = false
-  tags     = []
-  ttl      = 1
-  type     = "NS"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
-  settings = {}
-}
-
 resource "cloudflare_dns_record" "terraform_managed_resource_b81d5812e0f7624ffddbf61d277ac2c0_10" {
   content  = "\"v=spf1 include:_spf.google.com ~all\""
   name     = "anderspetersson.se"
@@ -152,6 +115,29 @@ resource "cloudflare_dns_record" "terraform_managed_resource_b81d5812e0f7624ffdd
   tags     = []
   ttl      = 1
   type     = "TXT"
+  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  settings = {}
+}
+
+
+resource "cloudflare_dns_record" "no_www" {
+  content  = "${var.cloudflare_tunnel_id}.cfargotunnel.com"
+  name     = "anderspetersson.se"
+  proxied  = true
+  tags     = []
+  ttl      = 1
+  type     = "CNAME"
+  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  settings = {}
+}
+
+resource "cloudflare_dns_record" "www" {
+  content  = "${var.cloudflare_tunnel_id}.cfargotunnel.com"
+  name     = "www.anderspetersson.se"
+  proxied  = true
+  tags     = []
+  ttl      = 1
+  type     = "CNAME"
   zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
   settings = {}
 }
