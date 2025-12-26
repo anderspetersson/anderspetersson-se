@@ -114,7 +114,7 @@ resource "cloudflare_dns_record" "terraform_managed_resource_b81d5812e0f7624ffdd
   tags     = []
   ttl      = 1
   type     = "TXT"
-  zone_id  = "a33f2f3a2ed12fde64fd741274f11e3f"
+  zone_id  = var.zone_id
   settings = {}
 }
 
