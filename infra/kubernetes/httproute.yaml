@@ -16,7 +16,7 @@ spec:
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
-  name: bestofblocket-non-www
+  name: anderspetersson-non-www
 spec:
   parentRefs:
     - kind: Gateway
@@ -24,6 +24,8 @@ spec:
   hostnames:
     - "anderspetersson.se"
   rules:
-    - backendRefs:
-        - name: anderspetersson-se
-          port: 8300
+    - filters:
+      - type: RequestRedirect
+        requestRedirect:
+          statusCode: 301
+          hostname: www.anderspetersson.se
